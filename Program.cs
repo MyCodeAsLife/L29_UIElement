@@ -14,12 +14,12 @@ namespace L29_UIElement
             int maxHealth = 10;
             int healthBarPositionX = 0;
             int healthBarPositionY = 0;
-            ConsoleColor healthBarFillColor = ConsoleColor.Green;
-
             int currentMana = 6;
             int maxMana = 8;
             int manaBarPositionX = 12;
             int manaBarPositionY = 0;
+
+            ConsoleColor healthBarFillColor = ConsoleColor.Green;
             ConsoleColor manaBarFillColor = ConsoleColor.Blue;
 
             DrawBar(currentHealth, maxHealth, healthBarFillColor, healthBarPositionX, healthBarPositionY);
@@ -29,10 +29,12 @@ namespace L29_UIElement
         static void DrawBar(int value, int maxValue, ConsoleColor color, int barPositionX, int barPositionY)
         {
             ConsoleColor defaultColor = Console.BackgroundColor;
+
             char openSymbol = '[';
             char closedSymbol = ']';
             char availableHealthSymbol = '#';
             char missingHealthSymbol = '_';
+
             string bar = null;
 
             for (int i = 0; i < value; i++)

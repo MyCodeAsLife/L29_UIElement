@@ -11,7 +11,7 @@ namespace L29_UIElement
         static void Main(string[] args)
         {
             int maxHealth = 10;
-            int currentHealthPercentage = 40;
+            int currentHealthPercentage = 42;
             int healthBarPositionX = 0;
             int healthBarPositionY = 0;
 
@@ -37,10 +37,10 @@ namespace L29_UIElement
             char missingHealthSymbol = '_';
 
             int minValue = 0;
-            int currentValue = (int)Math.Ceiling(currentValuePercentage * ((double)maxValue / 100.0));
+            int currentValue = (int)Math.Ceiling(currentValuePercentage * (maxValue / 100.0));
 
-            string bar = fillBar(minValue, currentValue, availableHealthSymbol);
-            bar += fillBar(currentValue, maxValue, missingHealthSymbol);
+            string bar = FillBar(minValue, currentValue, availableHealthSymbol);
+            bar += FillBar(currentValue, maxValue, missingHealthSymbol);
 
             Console.SetCursorPosition(barPositionX, barPositionY);
             Console.Write(openSymbol);
@@ -51,7 +51,7 @@ namespace L29_UIElement
             Console.WriteLine(closedSymbol);
         }
 
-        private static string fillBar(int value, int maxValue, char filler)
+        private static string FillBar(int value, int maxValue, char filler)
         {
             string tempLine = null;
 

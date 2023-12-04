@@ -10,23 +10,25 @@ namespace L29_UIElement
     {
         static void Main(string[] args)
         {
-            int currentHealth = 4;
             int maxHealth = 10;
+            int currentHealthPercentage = 42;
             int healthBarPositionX = 0;
             int healthBarPositionY = 0;
-            int currentMana = 6;
+
+
             int maxMana = 8;
+            int currentManaPercentage = 60;
             int manaBarPositionX = 12;
             int manaBarPositionY = 0;
 
             ConsoleColor healthBarFillColor = ConsoleColor.Green;
             ConsoleColor manaBarFillColor = ConsoleColor.Blue;
 
-            DrawBar(currentHealth, maxHealth, healthBarFillColor, healthBarPositionX, healthBarPositionY);
-            DrawBar(currentMana, maxMana, manaBarFillColor, manaBarPositionX, manaBarPositionY);
+            DrawBar(currentHealthPercentage, maxHealth, healthBarFillColor, healthBarPositionX, healthBarPositionY);
+            DrawBar(currentManaPercentage, maxMana, manaBarFillColor, manaBarPositionX, manaBarPositionY);
         }
 
-        static void DrawBar(int value, int maxValue, ConsoleColor color, int barPositionX, int barPositionY)
+        static void DrawBar(int currentValuePercentage, int maxValue, ConsoleColor color, int barPositionX, int barPositionY)
         {
             ConsoleColor defaultColor = Console.BackgroundColor;
 
@@ -35,27 +37,35 @@ namespace L29_UIElement
             char availableHealthSymbol = '#';
             char missingHealthSymbol = '_';
 
-            string bar = null;
+            int minValue = 0;
+            int currentValue = (int)Math.Ceiling(currentValuePercentage * ((double)maxValue / 100.0));
 
-            for (int i = 0; i < value; i++)
-                bar += availableHealthSymbol;
-
-            for (int i = value; i < maxValue; i++)
-                bar += missingHealthSymbol;
+            string bar = fillBar(minValue, currentValue, availableHealthSymbol);
+            bar += fillBar(currentValue, maxValue, missingHealthSymbol);
 
             Console.SetCursorPosition(barPositionX, barPositionY);
             Console.Write(openSymbol);
             Console.BackgroundColor = color;
-
-            for (int i = 0; i < value; i++)
-                Console.Write(bar[i]);
-
+            WriteBar(bar, minValue, currentValue);
             Console.BackgroundColor = defaultColor;
+            WriteBar(bar, currentValue, maxValue);
+            Console.WriteLine(closedSymbol);
+        }
+
+        private static string fillBar(int value, int maxValue, char filler)
+        {
+            string tempLine = null;
 
             for (int i = value; i < maxValue; i++)
-                Console.Write(bar[i]);
+                tempLine += filler;
 
-            Console.WriteLine(closedSymbol);
+            return tempLine;
+        }
+
+        private static void WriteBar(string bar, int value, int maxValue)
+        {
+            for (int i = value; i < maxValue; i++)
+                Console.Write(bar[i]);
         }
     }
 }

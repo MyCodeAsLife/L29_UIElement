@@ -11,10 +11,9 @@ namespace L29_UIElement
         static void Main(string[] args)
         {
             int maxHealth = 10;
-            int currentHealthPercentage = 42;
+            int currentHealthPercentage = 40;
             int healthBarPositionX = 0;
             int healthBarPositionY = 0;
-
 
             int maxMana = 8;
             int currentManaPercentage = 60;
